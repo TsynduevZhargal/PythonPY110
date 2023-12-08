@@ -1,8 +1,8 @@
 import requests
 
-key = "1fcbf37d-2013-4645-9a0a-2dadc99de042"
-lat = "59.93"
-lon = "30.31"
+key = "1fcbf37d-2013-4645-9a0a-2dadc99de042"  # ключ доступа к API
+lat = "59.93"  # широта в градусах
+lon = "30.31"  # долгота в градусах
 
 url = f"https://api.weather.yandex.ru/v2/forecast?lat={lat}&lon={lon}"
 headers={"X-Yandex-API-Key": f"{key}"}
