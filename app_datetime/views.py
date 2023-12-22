@@ -6,7 +6,7 @@ from datetime import datetime
 
 def datetime_view(request):
     if request.method == "GET":
-        data = ...  # Написать, что будет возвращаться из данного представления
-        # Вернуть объект HttpResponse с необходимыми данными
+        data = datetime.now()  # Написать, что будет возвращаться из данного представления
+        return HttpResponse(data)# Вернуть объект HttpResponse с необходимыми данными
 
 # Create your views here.

@@ -1,14 +1,14 @@
 import requests
 
-key = "1fcbf37d-2013-4645-9a0a-2dadc99de042"  # ключ доступа к API
-lat = "59.93"  # широта в градусах
-lon = "30.31"  # долгота в градусах
-
-url = f"https://api.weather.yandex.ru/v2/forecast?lat={lat}&lon={lon}"
-headers={"X-Yandex-API-Key": f"{key}"}
-
-response = requests.get(url, headers=headers)
-print(response.json())
+# key = "1fcbf37d-2013-4645-9a0a-2dadc99de042"  # ключ доступа к API
+# lat = "59.93"  # широта в градусах
+# lon = "30.31"  # долгота в градусах
+#
+# url = f"https://api.weather.yandex.ru/v2/forecast?lat={lat}&lon={lon}"
+# headers={"X-Yandex-API-Key": f"{key}"}
+#
+# response = requests.get(url, headers=headers)
+# print(response.json())
 
 # Словарь перевода значений направления ветра
 DIRECTION_TRANSFORM = {
@@ -43,14 +43,14 @@ def current_weather(lat, lon):
     data = response.json()
 
     result = {
-        'city': ['geo_object']['locality']['name'],
-        'time': ['fact']['uptime'],
-        'temp': ['fact']['temp'],   # TODO Реализовать вычисление температуры из данных полученных от API
-        'feels_like_temp': ['fact']['feels_like'],  # TODO Реализовать вычисление ощущаемой температуры из данных полученных от API
-        'pressure': ['fact']['pressure_mm'],  # TODO Реализовать вычисление давления из данных полученных от API
-        'humidity': ['fact']['humidity'],  # TODO Реализовать вычисление влажности из данных полученных от API
-        'wind_speed': ['fact']['wind_speed'],  # TODO Реализовать вычисление скорости ветра из данных полученных от API
-        'wind_gust': ['fact']['wind_gust'],  # TODO Реализовать вычисление скорости порывов ветка из данных полученных от API
+        'city': data['geo_object']['locality']['name'],
+        'time': data['fact']['uptime'],
+        'temp': data['fact']['temp'],   # TODO Реализовать вычисление температуры из данных полученных от API
+        'feels_like_temp': data['fact']['feels_like'],  # TODO Реализовать вычисление ощущаемой температуры из данных полученных от API
+        'pressure': data['fact']['pressure_mm'],  # TODO Реализовать вычисление давления из данных полученных от API
+        'humidity': data['fact']['humidity'],  # TODO Реализовать вычисление влажности из данных полученных от API
+        'wind_speed': data['fact']['wind_speed'],  # TODO Реализовать вычисление скорости ветра из данных полученных от API
+        'wind_gust': data['fact']['wind_gust'],  # TODO Реализовать вычисление скорости порывов ветка из данных полученных от API
         'wind_dir': DIRECTION_TRANSFORM.get(data['fact']['wind_dir']),
     }
     return result
