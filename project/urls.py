@@ -20,6 +20,7 @@ from django.urls import path, include
 from random import random
 from django.http import HttpResponse
 from app_datetime.views import datetime_view
+from store.views import shop_view
 
 
 def random_view(request):
@@ -34,4 +35,5 @@ urlpatterns = [
     path('datetime/', datetime_view),
     path('', include('store.urls')),
     path('weather/', include('app_weather.urls')),
+    path('', shop_view),
 ]
