@@ -2,14 +2,6 @@ from django.http import JsonResponse, HttpResponse, HttpResponseNotFound
 from .models import DATABASE
 
 
-# def products_view(request):
-#     if request.method == "GET":
-#         return JsonResponse(DATABASE,
-#                             json_dumps_params={"indent": 4,
-#                                                "ensure_ascii": False}
-#                             )# Вернуть JsonResponse с объектом DATABASE и параметрами отступов и кодировок,
-#
-
 def shop_view(request):
     if request.method == "GET":
         with open('store/shop.html', encoding="utf-8") as f:
@@ -38,9 +30,8 @@ def products_page_view(request, page):
     if request.method == "GET":
         for data in DATABASE.values():
             if data['html'] == page:
-                open(f'store/products/{page}.html', encoding="utf-8")
-                # TODO 1. (Не забываем про контекстный менеджер with)
+                with open(f'store/products/{page}.html', encoding="utf-8") as f:
+                    data_page = f.read()
+                return HttpResponse(data_page)
 
-                # TODO 2. Прочитайте его содержимое
-                return HttpResponse(data['html'])
         return HttpResponse(status=404)
