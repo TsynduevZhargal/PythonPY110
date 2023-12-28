@@ -36,5 +36,5 @@ urlpatterns = [
     path('', include('store.urls')),
     path('weather/', include('app_weather.urls')),
     path('', shop_view),
-products_page_view
+
 ]
