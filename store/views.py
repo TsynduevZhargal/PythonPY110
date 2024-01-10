@@ -1,6 +1,8 @@
 from django.http import JsonResponse, HttpResponse, HttpResponseNotFound
 from .models import DATABASE
 from logic.services import filtering_category
+from logic.services import view_in_cart, add_to_cart, remove_from_cart
+
 
 def shop_view(request):
     if request.method == "GET":
@@ -31,6 +33,7 @@ def products_view(request):
         return JsonResponse(data, safe=False, json_dumps_params={'ensure_ascii': False,
                                                                  'indent': 4})
 
+
 # def products_page_view(request, page):
 #     if request.method == "GET":
 #         for data in DATABASE.values():
@@ -58,3 +61,34 @@ def products_page_view(request, page):
                 return HttpResponse(data_page)
 
         return HttpResponse(status=404)
+
+
+def cart_view(request):
+    if request.method == "GET":
+        data = view_in_cart()  # TODO Вызвать ответственную за это действие функцию
+        return JsonResponse(data, json_dumps_params={'ensure_ascii': False,
+                                                     'indent': 4})
+
+
+def cart_add_view(request, id_product):
+    if request.method == "GET":
+        result = add_to_cart(id_product) # TODO Вызвать ответственную за это действие функцию
+        if result:
+            return JsonResponse({"answer": "Продукт успешно добавлен в корзину"},
+                                json_dumps_params={'ensure_ascii': False})
+
+        return JsonResponse({"answer": "Неудачное добавление в корзину"},
+                            status=404,
+                            json_dumps_params={'ensure_ascii': False})
+
+
+def cart_del_view(request, id_product):
+    if request.method == "GET":
+        result = remove_from_cart(id_product)  # TODO Вызвать ответственную за это действие функцию
+        if result:
+            return JsonResponse({"answer": "Продукт успешно удалён из корзины"},
+                                json_dumps_params={'ensure_ascii': False})
+
+        return JsonResponse({"answer": "Неудачное удаление из корзины"},
+                            status=404,
+                            json_dumps_params={'ensure_ascii': False})
