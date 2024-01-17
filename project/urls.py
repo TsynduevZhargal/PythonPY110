@@ -20,7 +20,13 @@ from django.urls import path, include
 from random import random
 from django.http import HttpResponse
 from app_datetime.views import datetime_view
-from store.views import shop_view
+# from store.views import shop_view
+from django.shortcuts import render
+
+
+def shop_view(request):
+    if request.method == "GET":
+        return render(request, 'shop.html')
 
 
 def random_view(request):
