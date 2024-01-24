@@ -1,14 +1,15 @@
 from django.http import JsonResponse, HttpResponse, HttpResponseNotFound
 from .models import DATABASE
+from django.shortcuts import render
 from logic.services import filtering_category
 from logic.services import view_in_cart, add_to_cart, remove_from_cart
 
 
 def shop_view(request):
     if request.method == "GET":
-        with open('store/shop.html', encoding="utf-8") as f:
-            data = f.read()  # Читаем HTML файл
-        return HttpResponse(data)  # Отправляем HTML файл как ответ
+        return render(request,
+                      'store/shop.html',
+                      context={"products": DATABASE.values()})
 
 
 def products_view(request):
@@ -66,9 +67,10 @@ def products_page_view(request, page):
 def cart_view(request):
     if request.method == "GET":
         data = view_in_cart()  # TODO Вызвать ответственную за это действие функцию
-        return JsonResponse(data, json_dumps_params={'ensure_ascii': False,
-                                                     'indent': 4})
-
+        if request.GET.get('format') == 'JSON':
+            return JsonResponse(data, json_dumps_params={'ensure_ascii': False,
+                                                         'indent': 4})
+        return render(request, "store/cart.html")
 
 def cart_add_view(request, id_product):
     if request.method == "GET":
