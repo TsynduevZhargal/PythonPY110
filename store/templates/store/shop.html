@@ -17,77 +17,105 @@
   </div>
 </div>
 
-<footer class="ftco-footer ftco-section">
-      <div class="container">
-      	<div class="row">
-      		<div class="mouse">
-						<a href="#" class="mouse-icon">
-							<div class="mouse-wheel"><span class="ion-ios-arrow-up"></span></div>
-						</a>
-					</div>
-      	</div>
-        <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Vegefoods</h2>
-              <p><i>Зеленый выбор для здоровой жизни!</i></p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-telegram"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-vk"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-whatsapp"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Навигация</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Магазин</a></li>
-                <li><a href="#" class="py-2 d-block">О нас</a></li>
-                <li><a href="#" class="py-2 d-block">Блог</a></li>
-                <li><a href="#" class="py-2 d-block">Связаться с нами</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-4">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Помощь</h2>
-              <div class="d-flex">
-	              <ul class="list-unstyled mr-l-5 pr-l-3 mr-4">
-	                <li><a href="#" class="py-2 d-block">Информация о доставке</a></li>
-	                <li><a href="#" class="py-2 d-block">Возврат и Обмен</a></li>
-	                <li><a href="#" class="py-2 d-block">Условия и Положения</a></li>
-	                <li><a href="#" class="py-2 d-block">Политика конфиденциальности</a></li>
-	              </ul>
-	              <ul class="list-unstyled">
-	                <li><a href="#" class="py-2 d-block">Вопрос - ответ</a></li>
-	                <li><a href="#" class="py-2 d-block">Контакты</a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Остались вопросы?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">Россия, г. Санкт-Петербург, ул. Ответов на вопросы, д.1</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+ 7 (812) 123 45 678</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.ru</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
+<section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center">
+    			<div class="col-md-10 mb-5 text-center">
+    				<ul class="product-category">
+    					<li><a href="#" class="active">Все</a></li>
+    					<li><a href="#">Овощи</a></li>
+    					<li><a href="#">Фрукты</a></li>
+    					<li><a href="#">Соки</a></li>
+    					<li><a href="#">Семена</a></li>
+    				</ul>
+    			</div>
+    		</div>
+    		<div class="row">
+                {% for product in products %}
+    			<div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="product">
+    					<a href="product/bell_pepper.html" class="img-prod">
+							<img class="img-fluid" src="{% static product.url%}" alt="Colorlib Template">
+    						<span class="status">30%</span>
+    						<div class="overlay"></div>
+    					</a>
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h3><a href="#">Болгарский перец</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price">
+										<span class="mr-2 price-dc">&#x20bd 300.00</span>
+										<span class="price-sale">&#x20bd 210.00</span>
+									</p>
+		    					</div>
+	    					</div>
+	    					<div class="bottom-area d-flex px-3">
+	    						<div class="m-auto d-flex">
+	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center" data-product-id="1">
+	    								<span><i class="ion-ios-add-circle-outline" data-product-id="1"></i></span>
+	    							</a>
+	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    								<span><i class="ion-ios-cart"></i></span>
+	    							</a>
+	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    								<span><i class="ion-ios-heart-empty" data-product-id="1" data-state="inactive" data-action="toggle"></i></span>
+	    							</a>
+    							</div>
+								<div class="custom-popup-message" data-product-id="1"></div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+				{% endfor %}
+    			<div class="col-md-6 col-lg-3 ftco-animate">
+    				<div class="product">
+    					<a href="product/strawberry.html" class="img-prod">
+							<img class="img-fluid" src="static/images/product-2.jpg" alt="Colorlib Template">
+    						<div class="overlay"></div>
+    					</a>
+    					<div class="text py-3 pb-4 px-3 text-center">
+    						<h3><a href="#">Клубника</a></h3>
+    						<div class="d-flex">
+    							<div class="pricing">
+		    						<p class="price">
+										<span>&#x20bd 500.00</span>
+									</p>
+		    					</div>
+	    					</div>
+    						<div class="bottom-area d-flex px-3">
+	    						<div class="m-auto d-flex">
+	    							<a href="#" class="add-to-cart d-flex justify-content-center align-items-center text-center" data-product-id="2">
+	    								<span><i class="ion-ios-add-circle-outline" data-product-id="2"></i></span>
+	    							</a>
+	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    								<span><i class="ion-ios-cart"></i></span>
+	    							</a>
+	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    								<span><i class="ion-ios-heart-empty" data-product-id="2" data-state="inactive" data-action="toggle"></i></span>
+	    							</a>
+    							</div>
+								<div class="custom-popup-message" data-product-id="2"></div>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
 
-            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						  Авторские права &copy;<script>document.write(new Date().getFullYear());</script> Все права защищены | Этот шаблон сделан с <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-						</p>
+    		</div>
+    		<div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&gt;</a></li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-</footer>
+    	</div>
+    </section>
 {% endblock %}
