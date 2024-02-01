@@ -1,6 +1,6 @@
 from django.http import JsonResponse, HttpResponse, HttpResponseNotFound
 from .models import DATABASE
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from logic.services import filtering_category
 from logic.services import view_in_cart, add_to_cart, remove_from_cart
 
@@ -150,3 +150,21 @@ def delivery_estimate_view(request):
         # if data_city:
         #     return JsonResponse({"price": data_city["price"]})
         # return JsonResponse({"price": data_country["fix_price"]})
+
+
+def cart_buy_now_view(request, id_product):
+    if request.method == "GET":
+        result = add_to_cart(id_product)
+        if result:
+            return redirect("store:cart_view")   #cart_view(request)
+
+        return HttpResponseNotFound("Неудачное добавление в корзину")
+
+
+def cart_remove_view(request, id_product):
+    if request.method == "GET":
+        result = remove_from_cart(id_product)  # TODO Вызвать функцию удаления из корзины
+        if result:
+            return redirect("store:cart_view")  # TODO Вернуть перенаправление на корзину
+
+        return HttpResponseNotFound("Неудачное удаление из корзины")
