@@ -156,7 +156,7 @@ def cart_buy_now_view(request, id_product):
     if request.method == "GET":
         result = add_to_cart(id_product)
         if result:
-            return redirect("store:cart_view")   #cart_view(request)
+            return redirect("store:cart_view")  #cart_view(request)
 
         return HttpResponseNotFound("Неудачное добавление в корзину")
 
